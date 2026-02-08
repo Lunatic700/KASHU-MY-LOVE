@@ -6,27 +6,30 @@ const question = document.getElementById("question");
 const heart = document.querySelector(".heart");
 const bgMusic = document.getElementById("bgMusic");
 
-bgMusic.volume = 0.6;
+bgMusic.volume = 0.7;
 
 let started = false;
 
-function startMusicAndHeart() {
+function startMusic() {
   if (!started) {
-    bgMusic.play();
+    bgMusic.play().catch(() => {});
     heart.classList.add("beat");
     started = true;
   }
 }
 
+// 🔥 Start music on ANY tap (mobile safe)
+document.body.addEventListener("click", startMusic, { once: true });
+
 noBtn.addEventListener("click", () => {
-  startMusicAndHeart();
+  startMusic();
   noClicks++;
 
   question.innerText = "Are you sure, Kashu? 🥺";
 
   let size = parseFloat(window.getComputedStyle(yesBtn).fontSize);
   yesBtn.style.fontSize = size + 10 + "px";
-  yesBtn.style.padding = "15px 40px";
+  yesBtn.style.padding = "18px 45px";
 
   if (noClicks >= 2) {
     noBtn.style.display = "none";
@@ -35,7 +38,7 @@ noBtn.addEventListener("click", () => {
 });
 
 yesBtn.addEventListener("click", () => {
-  startMusicAndHeart();
+  startMusic();
 
   document.getElementById("questionBox").classList.add("hidden");
   document.getElementById("yesScreen").classList.remove("hidden");
