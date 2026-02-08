@@ -11,12 +11,14 @@ body {
   justify-content: center;
   align-items: center;
   color: white;
+  overflow: hidden;
 }
 
 .container {
   text-align: center;
   padding: 20px;
   max-width: 90%;
+  position: relative;
 }
 
 h1 {
@@ -55,34 +57,17 @@ button {
   display: none;
 }
 
-.gallery {
-  display: flex;
-  gap: 15px;
-  justify-content: center;
-  margin: 20px 0;
-}
-
-.gallery img {
-  width: 140px;
-  height: 180px;
-  object-fit: cover;
-  border-radius: 15px;
-  border: 2px solid white;
-}
-
-.love {
-  font-size: 1.3rem;
-  margin-top: 15px;
-}
+/* 💖 HEART */
 .heart {
   position: absolute;
+  top: -40px;
+  left: 50%;
+  transform: translateX(-50%) rotate(-45deg);
   width: 120px;
   height: 120px;
   background: #ff2d55;
-  transform: rotate(-45deg);
-  animation: none;
   opacity: 0.25;
-  filter: blur(0.5px);
+  z-index: -1;
 }
 
 .heart::before,
@@ -110,9 +95,30 @@ button {
 }
 
 @keyframes heartbeat {
-  0%   { transform: rotate(-45deg) scale(1); }
-  25%  { transform: rotate(-45deg) scale(1.15); }
-  40%  { transform: rotate(-45deg) scale(0.95); }
-  60%  { transform: rotate(-45deg) scale(1.1); }
-  100% { transform: rotate(-45deg) scale(1); }
+  0%   { transform: translateX(-50%) rotate(-45deg) scale(1); }
+  25%  { transform: translateX(-50%) rotate(-45deg) scale(1.15); }
+  40%  { transform: translateX(-50%) rotate(-45deg) scale(0.95); }
+  60%  { transform: translateX(-50%) rotate(-45deg) scale(1.1); }
+  100% { transform: translateX(-50%) rotate(-45deg) scale(1); }
+}
+
+/* 📸 GALLERY */
+.gallery {
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+  margin: 20px 0;
+}
+
+.gallery img {
+  width: 140px;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 15px;
+  border: 2px solid white;
+}
+
+.love {
+  font-size: 1.3rem;
+  margin-top: 15px;
 }
