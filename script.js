@@ -1,3 +1,5 @@
+const heart = document.querySelector(".heart");
+const bgMusic = document.getElementById("bgMusic");
 let noClicks = 0;
 let yesBtn = document.getElementById("yesBtn");
 let noBtn = document.getElementById("noBtn");
@@ -22,6 +24,14 @@ noBtn.addEventListener("click", () => {
 });
 
 yesBtn.addEventListener("click", () => {
+  bgMusic.volume = 0.6;
+  bgMusic.play();
+
+  heart.classList.add("beat");
+
   document.getElementById("questionBox").classList.add("hidden");
   document.getElementById("yesScreen").classList.remove("hidden");
 });
+
+});
+
