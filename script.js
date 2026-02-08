@@ -1,37 +1,42 @@
+let noClicks = 0;
+
+const yesBtn = document.getElementById("yesBtn");
+const noBtn = document.getElementById("noBtn");
+const question = document.getElementById("question");
 const heart = document.querySelector(".heart");
 const bgMusic = document.getElementById("bgMusic");
-let noClicks = 0;
-let yesBtn = document.getElementById("yesBtn");
-let noBtn = document.getElementById("noBtn");
-let question = document.getElementById("question");
+
+bgMusic.volume = 0.6;
+
+let started = false;
+
+function startMusicAndHeart() {
+  if (!started) {
+    bgMusic.play();
+    heart.classList.add("beat");
+    started = true;
+  }
+}
 
 noBtn.addEventListener("click", () => {
+  startMusicAndHeart();
   noClicks++;
 
   question.innerText = "Are you sure, Kashu? 🥺";
 
-  let currentSize = parseFloat(
-    window.getComputedStyle(yesBtn).fontSize
-  );
-
-  yesBtn.style.fontSize = currentSize + 10 + "px";
+  let size = parseFloat(window.getComputedStyle(yesBtn).fontSize);
+  yesBtn.style.fontSize = size + 10 + "px";
   yesBtn.style.padding = "15px 40px";
 
   if (noClicks >= 2) {
     noBtn.style.display = "none";
-    question.innerText = "There is only one correct answer now 😌💖";
+    question.innerText = "There is only one right answer now 😌💖";
   }
 });
 
 yesBtn.addEventListener("click", () => {
-  bgMusic.volume = 0.6;
-  bgMusic.play();
-
-  heart.classList.add("beat");
+  startMusicAndHeart();
 
   document.getElementById("questionBox").classList.add("hidden");
   document.getElementById("yesScreen").classList.remove("hidden");
 });
-
-});
-
